@@ -511,16 +511,23 @@ td.center { text-align: center; }
   border-right: 1px solid rgba(255,255,255,0.02);
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .raw-table td:first-child {
   color: var(--text-primary); font-weight: 600;
-  background: var(--surface);
+  background: var(--page-bg);
   position: sticky; left: 0; z-index: 1;
   border-right: 1px solid var(--border);
   font-family: 'Inter', sans-serif; font-size: 12px;
 }
-.raw-table tr:hover td { background: var(--surface-2); }
-.raw-table tr:hover td:first-child { background: #f1f5f9; }
+.raw-table tr:hover td { 
+  background: var(--surface-active); 
+  color: var(--text-primary); 
+}
+.raw-table tr:hover td:first-child { 
+  background: #0a110a; /* Deep dark green tint for sticky column */
+  color: var(--green-primary); 
+}
 
 /* ═══════════════════════════════════════════════════
    FINAL SUMMARY BADGES
@@ -572,10 +579,35 @@ td.center { text-align: center; }
   border: 1px solid var(--border); border-radius: 8px;
   font-size: 13px; color: var(--text-primary);
   font-family: 'Inter', sans-serif;
-  background: var(--surface-2); outline: none;
-  transition: border-color .15s;
+  background: var(--surface); outline: none;
+  transition: all .3s ease;
 }
-.raw-search input:focus { border-color: var(--blue); background: white; }
+.raw-search input:hover {
+  background: var(--surface-hover);
+  border-color: rgba(59, 255, 91, 0.3);
+  box-shadow: 0 0 10px rgba(59, 255, 91, 0.05);
+}
+.raw-search input:focus {
+  border-color: var(--green-primary);
+  background: var(--surface);
+  box-shadow: 0 0 15px rgba(59, 255, 91, 0.15);
+  outline: none;
+}
+.raw-search input::placeholder {
+  color: var(--text-muted);
+}
+.raw-search input::selection {
+  background: rgba(59, 255, 91, 0.2);
+  color: var(--text-primary);
+}
+.raw-search input:-webkit-autofill,
+.raw-search input:-webkit-autofill:hover, 
+.raw-search input:-webkit-autofill:focus, 
+.raw-search input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--page-bg) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
 .raw-search label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
 .raw-row-count { font-size: 12px; color: var(--text-muted); padding: 0 20px 10px; }
 
